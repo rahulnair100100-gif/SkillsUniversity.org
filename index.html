@@ -187,7 +187,55 @@ nav {
   white-space: nowrap;
 }
 
-/* ── Hero sub line 2 ── */
+/* ── Hero pills image ── */
+.hero-pills-img {
+  margin: -8px auto 28px;
+  max-width: 700px;
+  width: 100%;
+  text-align: center;
+}
+
+.hero-pills-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
+
+.hero-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  background: rgba(26,108,248,0.12);
+  border: 1px solid rgba(45,132,255,0.45);
+  border-radius: 100px;
+  padding: 9px 20px;
+  font-family: 'Bricolage Grotesque', Arial Black, sans-serif;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--white);
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+}
+
+@media (max-width: 600px) {
+  .hero-pills-img { margin: -4px auto 20px; }
+  .hero-pills-row { gap: 8px; }
+  .hero-pill { font-size: 0.75rem; padding: 7px 14px; }
+}
+
+/* ── Hero sub strong (10% bigger) ── */
+.hero-sub-line2-block {
+  font-size: 1.01em;
+  color: rgba(255,255,255,0.6);
+  font-weight: 400;
+  font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+  text-align: center;
+  margin: 12px auto 36px;
+  max-width: 560px;
+  line-height: 1.6;
+}
+
 .hero-sub-line2 {
   font-size: 0.92em;
   color: rgba(255,255,255,0.6);
@@ -418,6 +466,8 @@ nav {
   font-weight: 600;
   display: block;
   margin-bottom: 4px;
+  font-size: clamp(1.1rem, 2.2vw, 1.32rem);
+  line-height: 1.45;
 }
 
 .hero-cta-group {
@@ -2348,7 +2398,7 @@ footer {
 }
 
 /* ===== HERO SUB-LINE 2 ===== */
-.hero-sub-line2 { font-size: 0.92em; color: rgba(255,255,255,0.6); font-weight: 400; }
+.hero-sub-line2 { font-size: 1.01em; color: rgba(255,255,255,0.6); font-weight: 400; }
 
 /* ===== SECTION TITLE CONSISTENCY ===== */
 .proof-header .section-title,
@@ -2439,7 +2489,18 @@ footer {
   <div class="hero-content">
 
     <h1>AI for <span class="accent">Entrepreneurs</span></h1>
-    <p class="hero-sub"><strong>Master the AI tools that drive real business growth</strong><br><span class="hero-sub-line2">90 minute online training course on AI tools that get you more leads, more customers, and more profits</span></p>
+    <p class="hero-sub"><strong>Master the AI tools to get you more leads, more customers and more profits</strong></p>
+    <div class="hero-pills-img">
+      <div class="hero-pills-row">
+        <div class="hero-pill">🚀 AI tools for Marketing</div>
+        <div class="hero-pill">💼 AI tools for Sales</div>
+        <div class="hero-pill">✍️ AI tools for Content</div>
+        <div class="hero-pill">📢 AI tools for Advertising</div>
+        <div class="hero-pill">🤝 AI tools for CRM</div>
+      </div>
+    </div>
+    <p class="hero-sub-line2-block">A 90 minute online course on how to use AI tools to grow your business revenues</p>
+    </div>
     <div class="hero-cta-group">
       <a href="https://www.paypal.com/ncp/payment/NBSXSE6W44FSS" target="_blank" rel="noopener" class="btn-primary">🚀 Enroll Now — <span id="price-hero-cta">₹8,500</span></a>
       <a href="#modules" class="btn-secondary">See Course Content ↓</a>
@@ -2537,11 +2598,11 @@ footer {
       <h2 class="section-title reveal">5 Modules. <span class="accent">Infinite Growth.</span></h2>
       <p class="section-desc reveal" style="margin: 0 auto; text-align: center;">Learn to use the AI tools that will grow your business</p>
       <div class="module-pills reveal">
-        <div class="module-pill">🚀 AI in Growth Marketing</div>
-        <div class="module-pill">💼 AI in Sales</div>
-        <div class="module-pill">✍️ AI in Content</div>
-        <div class="module-pill">📢 AI in Advertising</div>
-        <div class="module-pill">🤝 AI in CRM</div>
+        <div class="module-pill">🚀 AI tools for Marketing</div>
+        <div class="module-pill">💼 AI tools for Sales</div>
+        <div class="module-pill">✍️ AI tools for Content</div>
+        <div class="module-pill">📢 AI tools for Advertising</div>
+        <div class="module-pill">🤝 AI tools for CRM</div>
       </div>
     </div>
     <div class="modules-grid">
@@ -3011,9 +3072,10 @@ footer {
         <a href="#">Home</a>
         <a href="#modules">Curriculum</a>
         <a href="https://www.paypal.com/ncp/payment/NBSXSE6W44FSS" target="_blank" rel="noopener">Pricing</a>
+        <a href="https://www.linkedin.com/company/skillsuniversity-org/" target="_blank" rel="noopener">Careers</a>
         <a href="#">Privacy Policy</a>
         <a href="#">Terms of Service</a>
-        <a href="mailto:contact@skillsuniversity.org">contact@skillsuniversity.org</a>
+        <a href="mailto:contact@skillsuniversity.org">Email: contact@skillsuniversity.org</a>
         <a href="https://www.linkedin.com/company/skillsuniversity-org/" target="_blank" rel="noopener">LinkedIn</a>
       </div>
       <div class="footer-bottom">© 2026 SkillsUniversity.org — All rights reserved.</div>
