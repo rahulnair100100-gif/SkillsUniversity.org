@@ -188,40 +188,87 @@ nav {
 }
 
 /* ── Hero pills image ── */
-.hero-pills-img {
-  margin: -8px auto 28px;
-  max-width: 700px;
-  width: 100%;
-  text-align: center;
-}
-
-.hero-pills-row {
+/* ── Hero static pills ── */
+.hero-pills-static {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   justify-content: center;
   gap: 10px;
+  margin: 20px auto;
+  max-width: 900px;
+  width: 100%;
 }
 
-.hero-pill {
+.hero-pill-static {
   display: inline-flex;
   align-items: center;
   gap: 7px;
   background: rgba(26,108,248,0.12);
   border: 1px solid rgba(45,132,255,0.45);
   border-radius: 100px;
-  padding: 9px 20px;
+  padding: 10px 18px;
   font-family: 'Bricolage Grotesque', Arial Black, sans-serif;
-  font-size: 0.85rem;
+  font-size: 0.82rem;
   font-weight: 600;
   color: var(--white);
   letter-spacing: -0.01em;
   white-space: nowrap;
 }
 
+@media (max-width: 900px) {
+  .hero-pills-static { flex-wrap: wrap; justify-content: center; gap: 8px; }
+  .hero-pill-static { font-size: 0.78rem; padding: 8px 14px; }
+}
+
+/* ── Pill ticker (marquee right to left) ── */
+.pill-ticker-wrap {
+  width: 100%;
+  overflow: hidden;
+  margin: 20px 0;
+  mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+}
+
+.pill-ticker {
+  display: flex;
+  width: max-content;
+  animation: tickerScroll 18s linear infinite;
+}
+
+.pill-ticker:hover { animation-play-state: paused; }
+
+@keyframes tickerScroll {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.pill-ticker-track {
+  display: flex;
+  gap: 12px;
+  padding-right: 12px;
+  flex-shrink: 0;
+}
+
+.pill-ticker-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(26,108,248,0.12);
+  border: 1px solid rgba(45,132,255,0.45);
+  border-radius: 100px;
+  padding: 10px 22px;
+  font-family: 'Bricolage Grotesque', Arial Black, sans-serif;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--white);
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+  cursor: default;
+}
+
 @media (max-width: 600px) {
-  .hero-pills-img { margin: -4px auto 20px; }
-  .hero-pills-row { gap: 8px; }
-  .hero-pill { font-size: 0.75rem; padding: 7px 14px; }
+  .pill-ticker-pill { font-size: 0.78rem; padding: 8px 16px; }
+  .pill-ticker { animation-duration: 12s; }
 }
 
 /* ── Hero sub strong (10% bigger) ── */
@@ -2490,14 +2537,12 @@ footer {
 
     <h1>AI for <span class="accent">Entrepreneurs</span></h1>
     <p class="hero-sub"><strong>Master the AI tools to get you more leads, more customers and more profits</strong></p>
-    <div class="hero-pills-img">
-      <div class="hero-pills-row">
-        <div class="hero-pill">🚀 AI tools for Marketing</div>
-        <div class="hero-pill">💼 AI tools for Sales</div>
-        <div class="hero-pill">✍️ AI tools for Content</div>
-        <div class="hero-pill">📢 AI tools for Advertising</div>
-        <div class="hero-pill">🤝 AI tools for CRM</div>
-      </div>
+    <div class="hero-pills-static">
+      <div class="hero-pill-static">🚀 AI tools for Marketing</div>
+      <div class="hero-pill-static">💼 AI tools for Sales</div>
+      <div class="hero-pill-static">✍️ AI tools for Content</div>
+      <div class="hero-pill-static">📢 AI tools for Advertising</div>
+      <div class="hero-pill-static">🤝 AI tools for CRM</div>
     </div>
     <p class="hero-sub-line2-block">A 90 minute online course on how to use AI tools to grow your business revenues</p>
     </div>
@@ -2597,12 +2642,21 @@ footer {
       <div class="section-label reveal">Complete Course Curriculum</div>
       <h2 class="section-title reveal">5 Modules. <span class="accent">Infinite Growth.</span></h2>
       <p class="section-desc reveal" style="margin: 0 auto; text-align: center;">Learn to use the AI tools that will grow your business</p>
-      <div class="module-pills reveal">
-        <div class="module-pill">🚀 AI tools for Marketing</div>
-        <div class="module-pill">💼 AI tools for Sales</div>
-        <div class="module-pill">✍️ AI tools for Content</div>
-        <div class="module-pill">📢 AI tools for Advertising</div>
-        <div class="module-pill">🤝 AI tools for CRM</div>
+      <div class="pill-ticker-wrap">
+        <div class="pill-ticker">
+        <div class="pill-ticker-track">
+          <div class="pill-ticker-pill">🚀 AI tools for Marketing</div>
+          <div class="pill-ticker-pill">💼 AI tools for Sales</div>
+          <div class="pill-ticker-pill">✍️ AI tools for Content</div>
+          <div class="pill-ticker-pill">📢 AI tools for Advertising</div>
+          <div class="pill-ticker-pill">🤝 AI tools for CRM</div>
+          <div class="pill-ticker-pill">🚀 AI tools for Marketing</div>
+          <div class="pill-ticker-pill">💼 AI tools for Sales</div>
+          <div class="pill-ticker-pill">✍️ AI tools for Content</div>
+          <div class="pill-ticker-pill">📢 AI tools for Advertising</div>
+          <div class="pill-ticker-pill">🤝 AI tools for CRM</div>
+        </div>
+        </div>
       </div>
     </div>
     <div class="modules-grid">
@@ -2954,11 +3008,6 @@ footer {
       <ul class="pricing-features">
         <li class="pricing-feature"><span class="feat-check">✓</span>Complete 90-minute AI Masterclass</li>
         <li class="pricing-feature"><span class="feat-check">✓</span>5 Power Modules (20+ AI Tools)</li>
-        <li class="pricing-feature"><span class="feat-check">✓</span>AI for Growth Marketing module</li>
-        <li class="pricing-feature"><span class="feat-check">✓</span>AI for Sales & Lead Generation module</li>
-        <li class="pricing-feature"><span class="feat-check">✓</span>AI for Content & Brand Building module</li>
-        <li class="pricing-feature"><span class="feat-check">✓</span>AI for Advertising (Meta & Google) module</li>
-        <li class="pricing-feature"><span class="feat-check">✓</span>Customer Relationship Management module</li>
         <li class="pricing-feature"><span class="feat-check">✓</span>Lifetime access + all future updates</li>
         <li class="pricing-feature"><span class="feat-check">✓</span>No coding or technical skills required</li>
       </ul>
@@ -3050,8 +3099,8 @@ footer {
 <!-- FINAL CTA -->
 <section class="final-cta">
   <div class="container">
-    <h2 class="reveal">Your Business Deserves to <br><span class="accent">Grow Faster.</span></h2>
-    <p class="reveal">Every day without AI tools is a day your competitors get further ahead. Join 3,000+ entrepreneurs already using AI to grow faster, work smarter, and win more customers.</p>
+    <h2 class="reveal">Your Business Deserves to <br><span class="accent">Grow Faster</span></h2>
+    <p class="reveal">Your competitors are starting to use AI tools, when will you? Join 3,000+ entrepreneurs already using AI to grow faster, work smarter, and win more customers.</p>
     <a href="https://www.paypal.com/ncp/payment/NBSXSE6W44FSS" target="_blank" rel="noopener" class="final-cta-btn reveal">
       Get Instant Access — <span id="price-final-cta">₹8,500</span>
       <span class="cta-arrow">→</span>
