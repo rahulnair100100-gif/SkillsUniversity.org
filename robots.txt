@@ -1,3 +1,69 @@
+# SkillsUniversity.org — robots.txt
+# Default: allow everything for everyone (search engines + AI crawlers)
+
+# ===== OpenAI =====
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+# ===== Anthropic (Claude) =====
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
+User-agent: Claude-User
+Allow: /
+
+# ===== Google =====
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Googlebot
+Allow: /
+
+# ===== Perplexity =====
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+# ===== Microsoft / Bing =====
+User-agent: bingbot
+Allow: /
+
+# ===== Apple =====
+User-agent: Applebot-Extended
+Allow: /
+
+# ===== Meta =====
+User-agent: Meta-ExternalAgent
+Allow: /
+
+# ===== Amazon =====
+User-agent: Amazonbot
+Allow: /
+
+# ===== ByteDance / TikTok =====
+User-agent: Bytespider
+Allow: /
+
+# ===== Common Crawl (used by many AI labs) =====
+User-agent: CCBot
+Allow: /
+
+# ===== Cohere =====
+User-agent: cohere-ai
+Allow: /
+
+# ===== Everyone else (catch-all) =====
 User-agent: *
 Allow: /
 
