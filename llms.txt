@@ -1,0 +1,26 @@
+# SkillsUniversity.org
+
+> SkillsUniversity.org teaches entrepreneurs and small business owners practical, no-code AI tools to grow their business. Its flagship offering is "AI Tools for Entrepreneurs" — a 75-minute online masterclass covering 20+ AI tools across 5 modules: AI for marketing, AI for sales, AI for content creation, AI for advertising, and AI for CRM. Students get lifetime access, a 7-day money-back guarantee, and can apply the tools the same day. Over 3,000 entrepreneurs have enrolled.
+
+## Course
+
+- [AI Tools for Entrepreneurs — 75-Minute Masterclass](https://www.skillsuniversity.org/): Course overview, curriculum, pricing, and enrollment. Regional pricing available for the USA, UK, Europe, and India.
+
+## Blog
+
+- [Blog index](https://www.skillsuniversity.org/blog/): Practical, no-fluff articles on using AI in business.
+- [How Entrepreneurs Are Using AI to Close More Deals](https://www.skillsuniversity.org/blog/ai-in-sales.html): AI for prospecting, personalized outreach, follow-ups, and forecasting.
+- [How Small Businesses Are Using AI to Market Smarter](https://www.skillsuniversity.org/blog/ai-in-marketing.html): AI for content creation, ad testing, and email personalization.
+- [AI for Startups: Doing More With a Smaller Team](https://www.skillsuniversity.org/blog/ai-for-startups.html): How early-stage founders use AI for research, support, building, and hiring.
+- [AI for Growing Businesses: Scaling Without Scaling Headcount](https://www.skillsuniversity.org/blog/ai-for-growing-businesses.html): Using AI to handle more volume in operations, support, and data.
+- [Claude vs. Gemini for Business](https://www.skillsuniversity.org/blog/claude-and-gemini-for-business.html): Choosing between AI assistants for everyday business use.
+
+- [Best AI Tools for WhatsApp Marketing for Small Businesses](https://www.skillsuniversity.org/blog/best-ai-tools-whatsapp-marketing-small-business.html): AI chat assistants, smart broadcasts, and follow-up automation on WhatsApp.
+- [AI Lead Generation for Small Business: A Practical Guide](https://www.skillsuniversity.org/blog/ai-lead-generation-small-business.html): Finding, qualifying, contacting, and following up leads with AI.
+- [How to Use AI to Write Google Ads That Lower Your Cost-Per-Click](https://www.skillsuniversity.org/blog/ai-google-ads-lower-cpc.html): Raising ad relevance with AI to reduce CPC.
+- [AI Email Marketing for Small Business](https://www.skillsuniversity.org/blog/ai-email-marketing-small-business.html): AI drafting, subject line testing, and the three essential automated sequences.
+- [How to Use AI for Customer Retention and Repeat Sales](https://www.skillsuniversity.org/blog/ai-customer-retention-repeat-sales.html): Spotting at-risk customers and automating personal follow-ups.
+
+## Contact
+
+- Email: contact@skillsuniversity.org
