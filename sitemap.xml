@@ -1,56 +1,73 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <!-- Homepage -->
   <url>
-    <loc>https://www.skillsuniversity.org/</loc>
+    <loc>https://skillsuniversity.org/</loc>
+    <lastmod>2026-08-03</lastmod>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://skillsuniversity.org/ai-tools-for-entrepreneurs/</loc>
+    <lastmod>2026-08-03</lastmod>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://skillsuniversity.org/ai-fundamentals-for-kids/</loc>
+    <lastmod>2026-08-03</lastmod>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://skillsuniversity.org/blog/</loc>
+    <lastmod>2026-08-03</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://skillsuniversity.org/blog/ai-in-sales.html</loc>
     <lastmod>2026-07-10</lastmod>
+    <priority>0.6</priority>
   </url>
-
-  <!-- Blog Index -->
   <url>
-    <loc>https://www.skillsuniversity.org/blog/</loc>
+    <loc>https://skillsuniversity.org/blog/ai-in-marketing.html</loc>
     <lastmod>2026-07-10</lastmod>
-  </url>
-
-  <!-- Blog Posts -->
-  <url>
-    <loc>https://www.skillsuniversity.org/blog/ai-in-sales.html</loc>
-    <lastmod>2026-06-19</lastmod>
+    <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://www.skillsuniversity.org/blog/ai-in-marketing.html</loc>
-    <lastmod>2026-06-19</lastmod>
-  </url>
-  <url>
-    <loc>https://www.skillsuniversity.org/blog/ai-for-startups.html</loc>
-    <lastmod>2026-06-19</lastmod>
-  </url>
-  <url>
-    <loc>https://www.skillsuniversity.org/blog/ai-for-growing-businesses.html</loc>
-    <lastmod>2026-06-19</lastmod>
-  </url>
-  <url>
-    <loc>https://www.skillsuniversity.org/blog/claude-and-gemini-for-business.html</loc>
-    <lastmod>2026-06-19</lastmod>
-  </url>
-  <url>
-    <loc>https://www.skillsuniversity.org/blog/best-ai-tools-whatsapp-marketing-small-business.html</loc>
+    <loc>https://skillsuniversity.org/blog/ai-for-startups.html</loc>
     <lastmod>2026-07-10</lastmod>
+    <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://www.skillsuniversity.org/blog/ai-lead-generation-small-business.html</loc>
+    <loc>https://skillsuniversity.org/blog/ai-for-growing-businesses.html</loc>
     <lastmod>2026-07-10</lastmod>
+    <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://www.skillsuniversity.org/blog/ai-google-ads-lower-cpc.html</loc>
+    <loc>https://skillsuniversity.org/blog/claude-and-gemini-for-business.html</loc>
     <lastmod>2026-07-10</lastmod>
+    <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://www.skillsuniversity.org/blog/ai-email-marketing-small-business.html</loc>
+    <loc>https://skillsuniversity.org/blog/best-ai-tools-whatsapp-marketing-small-business.html</loc>
     <lastmod>2026-07-10</lastmod>
+    <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://www.skillsuniversity.org/blog/ai-customer-retention-repeat-sales.html</loc>
+    <loc>https://skillsuniversity.org/blog/ai-lead-generation-small-business.html</loc>
     <lastmod>2026-07-10</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://skillsuniversity.org/blog/ai-google-ads-lower-cpc.html</loc>
+    <lastmod>2026-07-10</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://skillsuniversity.org/blog/ai-email-marketing-small-business.html</loc>
+    <lastmod>2026-07-10</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://skillsuniversity.org/blog/ai-customer-retention-repeat-sales.html</loc>
+    <lastmod>2026-07-10</lastmod>
+    <priority>0.6</priority>
   </url>
 </urlset>
