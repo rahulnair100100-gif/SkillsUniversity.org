@@ -67,4 +67,4 @@ Allow: /
 User-agent: *
 Allow: /
 
-Sitemap: https://www.skillsuniversity.org/sitemap.xml
+Sitemap: https://skillsuniversity.org/sitemap.xml
