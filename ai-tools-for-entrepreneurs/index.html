@@ -304,6 +304,79 @@ nav {
   .nav-links { display: none; }
 }
 
+/* ── Courses dropdown ── */
+.nav-drop { position: relative; }
+
+.nav-drop-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+  font-size: 0.92rem;
+  font-weight: 500;
+  color: rgba(255,255,255,0.75);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 0;
+  transition: color 0.25s;
+}
+
+.nav-drop-btn:hover,
+.nav-drop.open .nav-drop-btn { color: var(--gold, #e3b94a); }
+
+.nav-drop-caret { font-size: 0.6rem; transition: transform 0.25s; }
+.nav-drop.open .nav-drop-caret { transform: rotate(180deg); }
+
+.nav-drop-panel {
+  position: absolute;
+  top: calc(100% + 12px);
+  left: 50%;
+  transform: translateX(-50%) translateY(-6px);
+  background: linear-gradient(160deg, var(--navy2), var(--navy3));
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 8px;
+  min-width: 300px;
+  box-shadow: 0 24px 60px rgba(0,0,0,0.6);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s, transform 0.2s, visibility 0.2s;
+  z-index: 140;
+}
+
+.nav-drop.open .nav-drop-panel {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
+}
+
+.nav-drop-item {
+  display: block;
+  padding: 12px 14px;
+  border-radius: 10px;
+  text-decoration: none;
+  transition: background 0.2s;
+}
+
+.nav-drop-item:hover { background: rgba(201,151,31,0.14); }
+.nav-drop-item[aria-current="page"] { background: rgba(201,151,31,0.1); }
+
+.nav-drop-item strong {
+  display: block;
+  font-family: 'Plus Jakarta Sans', 'Arial Black', 'Helvetica Neue', Arial, sans-serif;
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: var(--white);
+}
+
+.nav-drop-item span {
+  display: block;
+  font-size: 0.76rem;
+  color: var(--white50);
+  margin-top: 2px;
+}
+
 .nav-cta-btn {
   background: linear-gradient(135deg, var(--blue) 0%, #9c7016 100%);
   color: var(--white);
@@ -3052,9 +3125,21 @@ body.site-modal-open { overflow: hidden; }
 
   <div class="nav-links">
     <a href="/" class="nav-link">Home</a>
+    <div class="nav-drop">
+      <button type="button" class="nav-drop-btn" aria-expanded="false" aria-haspopup="true">Courses <span class="nav-drop-caret">&#9660;</span></button>
+      <div class="nav-drop-panel">
+        <a class="nav-drop-item" href="/ai-tools-for-entrepreneurs/" aria-current="page">
+          <strong>AI Tools for Entrepreneurs</strong>
+          <span>For founders &amp; business owners &middot; 75 min</span>
+        </a>
+        <a class="nav-drop-item" href="/ai-fundamentals-for-kids/">
+          <strong>AI Fundamentals for Kids</strong>
+          <span>Ages 10&ndash;16 &middot; self-paced &middot; certificate</span>
+        </a>
+      </div>
+    </div>
     <a href="#modules" class="nav-link">Curriculum</a>
     <a href="#pricing" class="nav-link">Pricing</a>
-    <a href="/ai-fundamentals-for-kids/" class="nav-link">For Kids</a>
     <a href="/blog/" class="nav-link">Blog</a>
   </div>
 
@@ -3782,22 +3867,6 @@ body.site-modal-open { overflow: hidden; }
   </div>
 </section>
 
-<!-- OTHER COURSE -->
-<section class="b2b-section">
-  <div class="container">
-    <div class="b2b-box reveal">
-      <div class="b2b-title">Also from SkillsUniversity</div>
-      <div class="b2b-subtitle">AI Fundamentals for Kids — ages 10 to 16</div>
-      <p class="b2b-text">Many of our students ask what their children should know about AI. We built a separate self-paced course for exactly that: how AI works, how to use it honestly for schoolwork, how to create with it, and how to stay safe online. No coding, parent-guided, same 7-day guarantee.</p>
-      <div class="b2b-cta-row">
-        <a href="/ai-fundamentals-for-kids/" class="b2b-cta">
-          <span class="b2b-cta-icon">👧</span> See the kids course
-        </a>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- B2B IN-PERSON TRAINING -->
 <section class="b2b-section">
   <div class="container">
@@ -3969,6 +4038,21 @@ document.addEventListener('keydown', function(e) {
 </script>
 
 <script>
+// Courses dropdown
+(function() {
+  var drop = document.querySelector('.nav-drop');
+  if (!drop) return;
+  var btn = drop.querySelector('.nav-drop-btn');
+  function close() { drop.classList.remove('open'); btn.setAttribute('aria-expanded', 'false'); }
+  btn.addEventListener('click', function(e) {
+    e.stopPropagation();
+    var open = drop.classList.toggle('open');
+    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+  document.addEventListener('click', close);
+  document.addEventListener('keydown', function(e) { if (e.key === 'Escape') close(); });
+})();
+
 function toggleFaq(btn) {
   var item = btn.closest('.faq-item');
   var isOpen = item.classList.contains('open');
