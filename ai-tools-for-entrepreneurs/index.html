@@ -552,6 +552,63 @@ nav {
   gap: 6px;
 }
 
+/* ── Problem answer strip ── */
+.problem-answer-note {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px 24px;
+  margin-top: 16px;
+}
+
+.pa-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+  font-size: 0.86rem;
+  font-weight: 500;
+  color: rgba(255,255,255,0.75);
+  white-space: nowrap;
+}
+
+.pa-item .check {
+  width: 19px;
+  height: 19px;
+  font-size: 0.58rem;
+}
+
+@media (max-width: 600px) {
+  .problem-answer-note { gap: 9px 16px; }
+  .pa-item { font-size: 0.8rem; }
+}
+
+/* ── Problem answer image ── */
+.problem-answer-img {
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid rgba(230,179,51,0.28);
+  box-shadow: 0 24px 60px rgba(5,13,31,0.55), 0 0 40px rgba(201,151,31,0.1);
+}
+
+.problem-answer-img img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Keep the challenges heading to two balanced lines */
+.problem-section .section-title {
+  font-size: clamp(1.75rem, 3.1vw, 2.5rem);
+  text-wrap: balance;
+}
+
+/* Benefits sub-line sits on one line on desktop */
+.benefits-section .section-desc {
+  max-width: 820px;
+  text-wrap: balance;
+}
+
 /* ── Problem image ── */
 .problem-image-wrap {
   margin-top: 16px;
@@ -3216,15 +3273,15 @@ body.site-modal-open { overflow: hidden; }
           <img src="/assets/problem.webp" width="900" height="900" loading="lazy" decoding="async" alt="Entrepreneur thinking about business challenges" class="problem-img">
         </div>
       </div>
-      <div class="problem-solution reveal">
-        <div class="solution-text">
-          This online course teaches you  the <span class="highlight">exact AI tools</span> to solve this
+      <div class="problem-answer">
+        <div class="problem-answer-img reveal">
+          <img src="/assets/ai-entrepreneur.webp" width="900" height="1125" loading="lazy" decoding="async"
+               alt="A business owner smiling, thinking: AI tools now make me more money and sales">
         </div>
-        <ul class="solution-list">
-          <li><span class="check">✓</span> Learn how to use  AI sales & marketing tools to grow your business</li>
-          <li><span class="check">✓</span> No coding or technical skills needed</li>
-          <li><span class="check">✓</span> Real results: More leads, More sales, More revenue growth</li>
-        </ul>
+        <div class="problem-answer-note reveal">
+          <span class="pa-item"><span class="check">✓</span> No coding or technical skills needed</span>
+          <span class="pa-item"><span class="check">✓</span> More leads, sales and revenue</span>
+        </div>
       </div>
     </div>
   </div>
@@ -3433,7 +3490,7 @@ body.site-modal-open { overflow: hidden; }
   <div class="container">
     <div class="section-label reveal">Why Students Love This Course</div>
     <h2 class="section-title reveal">Built to Get You <span class="accent">Real Results</span></h2>
-    <p class="section-desc reveal" style="max-width: 640px;">No fluff, no theory. Every lesson creates immediate, measurable impact on your business growth.</p>
+    <p class="section-desc reveal">No fluff, no theory. Every lesson creates immediate, measurable impact on your business growth.</p>
 
     <div class="benefits-layout">
 
@@ -3455,7 +3512,7 @@ body.site-modal-open { overflow: hidden; }
         </div>
         <div class="benefit-card reveal">
           <span class="benefit-icon">🎯</span>
-          <div class="benefit-title">Effective &amp; easy to use AI tools</div>
+          <div class="benefit-title">Easy to use AI tools</div>
           <p class="benefit-desc">Every AI tool  you learn, is practical and doesn't require any technical coding.</p>
         </div>
         <div class="benefit-card reveal">
@@ -3493,7 +3550,7 @@ body.site-modal-open { overflow: hidden; }
       <div class="instructor-details reveal">
         <div class="section-label">Your Instructor</div>
         <h2>Taught by <span class="accent">Practitioners,</span> Not Just by Teachers</h2>
-        <p>This course was built by experts who have been in the trenches — running businesses, using AI tools daily, and figuring out what actually works vs. what's hype.</p>
+        <p>This course has been built by experts who run successful businesses and use AI tools daily.</p>
 
         <div class="cert-badge">
           🏆 &nbsp;Trusted by 3,000+ entrepreneurs across the globe
@@ -3515,15 +3572,15 @@ body.site-modal-open { overflow: hidden; }
       <div class="who-right">
         <div class="who-card reveal">
           <div class="who-check">✓</div>
-          <div>You are an aspiring entrepreneur or business owner, that wants to grow your business</div>
+          <div>You want to grow your business</div>
         </div>
         <div class="who-card reveal">
           <div class="who-check">✓</div>
-          <div>You know AI is important, but don't know which practical AI tools to use</div>
+          <div>You don&rsquo;t know which AI tools to use</div>
         </div>
         <div class="who-card reveal">
           <div class="who-check">✓</div>
-          <div>You're spending money on marketing, but not getting the ROI you want</div>
+          <div>You are currently not getting the ROI you want</div>
         </div>
       </div>
     </div>
