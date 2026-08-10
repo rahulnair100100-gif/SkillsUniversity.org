@@ -133,13 +133,15 @@
   font-size:clamp(0.96rem,1.9vw,1.08rem);color:rgba(255,255,255,0.6);
   letter-spacing:0.01em;
 }
-.hero-course-list{list-style:none;text-align:left;display:flex;flex-direction:column;gap:13px;margin:0;padding:0}
-.hero-course-list li{
-  position:relative;padding-left:24px;
-  font-size:clamp(0.94rem,1.72vw,1.04rem);color:rgba(255,255,255,0.75);line-height:1.6;
-  text-wrap:pretty;
+.hero-course-list{
+  list-style:none;margin:0;padding:0;
+  display:flex;flex-wrap:wrap;justify-content:center;gap:12px 34px;
 }
-.hero-course-list li strong{color:rgba(255,255,255,0.96);font-weight:700}
+.hero-course-list li{
+  position:relative;padding-left:22px;
+  font-family:var(--font-display);font-weight:600;letter-spacing:-0.01em;
+  font-size:clamp(1rem,1.9vw,1.16rem);color:rgba(255,255,255,0.94);line-height:1.5;
+}
 .hero-course-list li::before{
   content:'';position:absolute;left:2px;top:0.62em;width:7px;height:7px;border-radius:50%;
   background:linear-gradient(135deg,var(--gold-bright),var(--cream));
@@ -148,9 +150,9 @@
 @media (max-width:600px){
   .home-hero h1{margin-top:20px}
   .home-hero-tag{margin-bottom:32px}
-  .hero-courses{gap:12px;margin-bottom:32px;max-width:100%}
-  .hero-course-list{gap:12px}
-  .hero-course-list li{padding-left:21px}
+  .hero-courses{gap:14px;margin-bottom:32px;max-width:100%}
+  .hero-course-list{flex-direction:column;align-items:flex-start;gap:11px}
+  .hero-course-list li{padding-left:20px}
 }
 .hero-ctas{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
 .hero-tertiary{
@@ -266,7 +268,9 @@
 @media (max-width:600px){.b2b-box{padding:28px 20px}}
 
 /* Final CTA */
-.final{padding:104px 0;text-align:center;position:relative;overflow:hidden}
+.final{padding:84px 0 100px;text-align:center;position:relative;overflow:hidden}
+.final-art{display:block;position:relative;width:100%;max-width:290px;height:auto;margin:0 auto 20px}
+@media (max-width:600px){.final{padding:64px 0 76px}.final-art{max-width:230px;margin-bottom:16px}}
 .final::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 70% at 50% 50%,rgba(201,151,31,0.17),transparent 70%);pointer-events:none}
 .final h2{font-family:var(--font-display);font-size:clamp(2rem,4.6vw,3.4rem);font-weight:700;line-height:1.12;letter-spacing:-0.025em;margin-bottom:18px;position:relative}
 .final p{color:var(--white80);font-size:1.06rem;max-width:520px;margin:0 auto 38px;position:relative}
@@ -324,14 +328,14 @@
   <div class="home-hero-bg"></div>
   <div class="home-hero-grid"></div>
   <div class="container">
-    <span class="badge-eyebrow"><span class="dot"></span> Online academy</span>
+    <span class="badge-eyebrow"><span class="dot"></span>Online academy<span class="dot"></span></span>
     <h1>Skills <span class="accent">University</span></h1>
     <p class="home-hero-tag">Skills for the modern era</p>
     <div class="hero-courses">
       <p class="hero-courses-lead">Learn AI practically with our two online courses:</p>
       <ul class="hero-course-list">
-        <li><strong>AI Tools for Entrepreneurs</strong>, to help them grow their business</li>
-        <li><strong>AI Fundamentals for Kids</strong>, to prepare them for AI, Machine Learning and Robotics</li>
+        <li>AI Tools for Entrepreneurs</li>
+        <li>AI Fundamentals for Kids</li>
       </ul>
     </div>
     <div class="hero-ctas">
@@ -372,7 +376,7 @@
     <div class="center">
       <div class="eyebrow centered reveal">Our courses</div>
       <h2 class="h-section reveal">Two courses. <span class="accent">One idea.</span></h2>
-      <p class="h-sub reveal">Our courses are short, practical and built to be benefitted and applied from Day 1</p>
+      <p class="h-sub reveal">Our courses are practical and built to be benefitted and applied from Day 1</p>
     </div>
 
     <div class="course-grid">
@@ -417,13 +421,13 @@
         </div>
         <div class="course-who">For founders &amp; business owners</div>
         <h3 class="course-name">AI Tools for <span class="accent">Entrepreneurs</span></h3>
-        <p class="course-line">A 75-minute masterclass on the AI tools that bring in more leads, more customers and more profit.</p>
         <div class="course-meta">
           <span>75 minutes</span><span>5 modules</span><span>20+ tools</span><span>Lifetime access</span>
         </div>
+        <p class="course-line">A 75-minute masterclass on the AI tools that bring in more leads, more customers and more profit. You will also learn to:</p>
         <ul class="course-list">
-          <li><span class="tick">✓</span> Cut ad costs and write better campaigns with AI</li>
-          <li><span class="tick">✓</span> Generate leads and automate outreach</li>
+          <li><span class="tick">✓</span> Create better marketing campaigns with AI</li>
+          <li><span class="tick">✓</span> Generate leads and reach more customers</li>
           <li><span class="tick">✓</span> Create a month of content in an afternoon</li>
           <li><span class="tick">✓</span> Keep customers coming back with AI-driven CRM</li>
         </ul>
@@ -441,56 +445,71 @@
       <article class="course-card reveal">
         <span class="course-ribbon">Bestseller</span>
         <div class="course-head">
-        <svg class="course-art" viewBox="0 0 480 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Three rising steps with a rocket climbing towards a star, representing a child progressing and getting ready for the future">
-          <title>Learning that launches</title>
-          <defs>
-            <linearGradient id="kidBlock" x1="0" y1="1" x2="0" y2="0">
-              <stop offset="0%" stop-color="#c9971f"/><stop offset="100%" stop-color="#ffd76a"/>
-            </linearGradient>
-            <linearGradient id="kidBody" x1="0" y1="1" x2="0" y2="0">
-              <stop offset="0%" stop-color="#e6b333"/><stop offset="100%" stop-color="#ffe9a8"/>
-            </linearGradient>
-            <filter id="kidGlow" x="-60%" y="-60%" width="220%" height="220%">
-              <feGaussianBlur stdDeviation="4" result="b"/>
-              <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
-            </filter>
-          </defs>
-          <g stroke="rgba(255,255,255,0.07)" stroke-width="1">
-            <line x1="0" y1="40" x2="480" y2="40"/><line x1="0" y1="90" x2="480" y2="90"/>
-            <line x1="0" y1="140" x2="480" y2="140"/><line x1="0" y1="180" x2="480" y2="180"/>
-          </g>
-          <g filter="url(#kidGlow)">
-            <rect x="34"  y="148" width="60" height="32"  rx="13" fill="url(#kidBlock)"/>
-            <rect x="126" y="112" width="60" height="68"  rx="13" fill="url(#kidBlock)"/>
-            <rect x="218" y="74"  width="60" height="106" rx="13" fill="url(#kidBlock)"/>
-          </g>
-          <path d="M62,138 C130,118 200,96 300,66" fill="none" stroke="rgba(255,224,102,0.5)"
-                stroke-width="3" stroke-linecap="round" stroke-dasharray="2 12"/>
-          <g transform="translate(348,58) rotate(45)" filter="url(#kidGlow)">
-            <path d="M-4,12 L0,26 L4,12 Z" fill="#ffe066" opacity="0.9"/>
-            <path d="M-10,4 L-19,17 L-10,13 Z" fill="#c9971f"/>
-            <path d="M10,4 L19,17 L10,13 Z" fill="#c9971f"/>
-            <path d="M0,-26 C8,-14 10,0 10,12 L-10,12 C-10,0 -8,-14 0,-26 Z" fill="url(#kidBody)"/>
-            <circle cx="0" cy="-5" r="5" fill="#050d1f" stroke="#ffe066" stroke-width="1.8"/>
-          </g>
-          <g transform="translate(434,30)" filter="url(#kidGlow)">
-            <path d="M0,-14 L3.5,-4.9 L13.3,-4.3 L5.7,1.9 L8.2,11.3 L0,6 L-8.2,11.3 L-5.7,1.9 L-13.3,-4.3 L-3.5,-4.9 Z" fill="#ffe9a8"/>
-          </g>
-          <circle cx="404" cy="82" r="3" fill="rgba(255,224,102,0.75)"/>
-          <circle cx="452" cy="72" r="2.2" fill="rgba(255,224,102,0.5)"/>
-          <circle cx="392" cy="18" r="2.2" fill="rgba(255,224,102,0.5)"/>
-        </svg>
+        <svg class="course-art" viewBox="0 0 480 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="A friendly robot stacking blocks into a tower, representing children building things with AI">
+            <title>Building with AI</title>
+            <defs>
+              <linearGradient id="kidMetal" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#ffe9a8"/><stop offset="100%" stop-color="#c9971f"/>
+              </linearGradient>
+              <linearGradient id="kidBlock" x1="0" y1="1" x2="0" y2="0">
+                <stop offset="0%" stop-color="#c9971f"/><stop offset="100%" stop-color="#ffd76a"/>
+              </linearGradient>
+              <filter id="kidGlow" x="-60%" y="-60%" width="220%" height="220%">
+                <feGaussianBlur stdDeviation="4" result="b"/>
+                <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+              </filter>
+            </defs>
+
+            <g stroke="rgba(255,255,255,0.07)" stroke-width="1">
+              <line x1="0" y1="40" x2="480" y2="40"/><line x1="0" y1="90" x2="480" y2="90"/>
+              <line x1="0" y1="140" x2="480" y2="140"/><line x1="0" y1="180" x2="480" y2="180"/>
+            </g>
+
+            <g filter="url(#kidGlow)">
+              <line x1="146" y1="46" x2="146" y2="31" stroke="url(#kidMetal)" stroke-width="4" stroke-linecap="round"/>
+              <circle cx="146" cy="25" r="7" fill="url(#kidMetal)"/>
+              <rect x="102" y="46" width="88" height="66" rx="20" fill="url(#kidMetal)"/>
+              <rect x="118" y="62" width="56" height="36" rx="12" fill="#050d1f"/>
+              <circle cx="135" cy="77" r="6" fill="#ffe066"/><circle cx="157" cy="77" r="6" fill="#ffe066"/>
+              <path d="M136,88 Q146,96 156,88" fill="none" stroke="#ffe066" stroke-width="3" stroke-linecap="round"/>
+              <rect x="86" y="66" width="14" height="30" rx="7" fill="url(#kidBlock)"/>
+              <rect x="192" y="66" width="14" height="30" rx="7" fill="url(#kidBlock)"/>
+              <rect x="112" y="122" width="68" height="50" rx="16" fill="url(#kidMetal)"/>
+              <rect x="128" y="138" width="36" height="8" rx="4" fill="#050d1f" opacity="0.5"/>
+              <rect x="128" y="152" width="24" height="8" rx="4" fill="#050d1f" opacity="0.32"/>
+              <path d="M182,134 L222,121" stroke="url(#kidMetal)" stroke-width="9" stroke-linecap="round" fill="none"/>
+              <circle cx="228" cy="119" r="8" fill="url(#kidMetal)"/>
+            </g>
+
+            <g filter="url(#kidGlow)">
+              <rect x="272" y="136" width="44" height="36" rx="10" fill="url(#kidBlock)"/>
+              <rect x="322" y="136" width="44" height="36" rx="10" fill="url(#kidBlock)"/>
+              <rect x="297" y="94"  width="44" height="36" rx="10" fill="url(#kidBlock)"/>
+            </g>
+            <g filter="url(#kidGlow)" transform="translate(319,58) rotate(-10)">
+              <rect x="-22" y="-18" width="44" height="36" rx="10" fill="url(#kidBlock)"/>
+            </g>
+            <path d="M319,80 L319,92" stroke="rgba(255,224,102,0.55)" stroke-width="3"
+                  stroke-linecap="round" stroke-dasharray="2 7"/>
+
+            <g transform="translate(408,62)" filter="url(#kidGlow)">
+              <path d="M0,-14 L3.5,-4.9 L13.3,-4.3 L5.7,1.9 L8.2,11.3 L0,6 L-8.2,11.3 L-5.7,1.9 L-13.3,-4.3 L-3.5,-4.9 Z" fill="#ffe9a8"/>
+            </g>
+            <circle cx="392" cy="106" r="3" fill="rgba(255,224,102,0.7)"/>
+            <circle cx="432" cy="98" r="2.2" fill="rgba(255,224,102,0.45)"/>
+            <circle cx="254" cy="72" r="2.4" fill="rgba(255,224,102,0.5)"/>
+          </svg>
         </div>
         <div class="course-who">For kids aged 10–16</div>
         <h3 class="course-name">AI Fundamentals <span class="accent">for Kids</span></h3>
-        <p class="course-line">A self-paced course that teaches children how AI &amp; Machine Learning actually works, how to use it well for school, and how to stay safe.</p>
         <div class="course-meta">
           <span>Ages 10–16</span><span>6 modules</span><span>Self-paced</span><span>Certificate</span>
         </div>
+        <p class="course-line">A self-paced course that prepares children for AI, Machine Learning and Robotics. They will also learn:</p>
         <ul class="course-list">
-          <li><span class="tick">✓</span> Understand what AI is — and what it is not</li>
-          <li><span class="tick">✓</span> Prompt well, and use AI to learn instead of cheat</li>
-          <li><span class="tick">✓</span> Create stories, art, music and a first no-code project</li>
+          <li><span class="tick">✓</span> Prompt engineering basics</li>
+          <li><span class="tick">✓</span> Vibe code and build real projects with AI</li>
+          <li><span class="tick">✓</span> Create stories, art, music and learn with AI</li>
           <li><span class="tick">✓</span> Spot deepfakes, protect privacy, think critically</li>
         </ul>
         <div class="course-foot">
@@ -513,7 +532,7 @@
     <div class="mission">
       <div class="mission-quote reveal">
         <div class="qm">"</div>
-        <p>Our mission is to teach AI skills to people that want to learn and benefit from AI.</p>
+        <p>Our mission is to teach AI skills to people that want to learn, build and benefit from AI.</p>
         <div class="mission-by">
           <img src="/assets/ajay.webp" width="128" height="128" loading="lazy" decoding="async" alt="Jay, lead instructor at SkillsUniversity.org">
           <div>
@@ -526,7 +545,7 @@
       <div class="reveal">
         <div class="eyebrow">About us</div>
         <h2 class="h-section">An academy for the AI skills <span class="accent">school missed</span></h2>
-        <p class="h-sub">We started in 2021 answering one question for business owners — which AI tools actually work — and now answer it for their children too.</p>
+        <p class="h-sub">We started in 2021 answering one question for businesses — which AI tools work the best — and now answer it for children too.</p>
         <div style="display:flex;flex-wrap:wrap;gap:9px;margin-top:24px">
           <span class="pill">🏆 Trusted by 3,000+ students</span>
           <span class="pill">🇮🇳🇬🇧🇪🇺🇺🇸 Students worldwide</span>
@@ -545,8 +564,8 @@
       <h2 class="h-section reveal">Built by practitioners, <span class="accent">not lecturers</span></h2>
     </div>
     <div class="grid-3" style="margin-top:44px">
-      <div class="card reveal"><span class="card-icon">🛠️</span><div class="card-title">Practical, never theoretical</div><p class="card-desc">Learn AI skills and tools that you can implement right away.</p></div>
-      <div class="card reveal"><span class="card-icon">🚫</span><div class="card-title">No code required</div><p class="card-desc">If you can use a browser, you can follow along — at 45 or at 11.</p></div>
+      <div class="card reveal"><span class="card-icon">🛠️</span><div class="card-title">Learn easily and practically</div><p class="card-desc">Learn AI skills and tools that you can implement right away.</p></div>
+      <div class="card reveal"><span class="card-icon">💰</span><div class="card-title">Earn more</div><p class="card-desc">Our courses are built to help increase one's earning potential.</p></div>
       <div class="card reveal"><span class="card-icon">⏱️</span><div class="card-title">Short by design</div><p class="card-desc">Courses you actually finish. Watch it, apply it, see the result.</p></div>
       <div class="card reveal"><span class="card-icon">🛡️</span><div class="card-title">7-day money-back guarantee</div><p class="card-desc">Not right for you? Email us within 7 days for a full refund.</p></div>
       <div class="card reveal"><span class="card-icon">🔒</span><div class="card-title">Secure checkout</div><p class="card-desc">Encrypted payments via Teachable. We never see your card details.</p></div>
@@ -668,6 +687,45 @@
 <!-- ============ FINAL CTA ============ -->
 <section class="final">
   <div class="container">
+    <svg class="final-art reveal" viewBox="0 0 480 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Three rising stacks of coins with an upward arrow, representing higher earning potential from AI skills">
+      <title>Higher earning potential</title>
+      <defs>
+        <linearGradient id="earnCoin" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stop-color="#ffe9a8"/><stop offset="55%" stop-color="#e6b333"/><stop offset="100%" stop-color="#c9971f"/>
+        </linearGradient>
+        <linearGradient id="earnArrow" x1="0" y1="1" x2="1" y2="0">
+          <stop offset="0%" stop-color="#e6b333"/><stop offset="100%" stop-color="#ffe9a8"/>
+        </linearGradient>
+        <filter id="earnGlow" x="-60%" y="-60%" width="220%" height="220%">
+          <feGaussianBlur stdDeviation="4" result="b"/>
+          <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+        </filter>
+        <marker id="earnHead" markerWidth="9" markerHeight="9" refX="4" refY="4.5" orient="auto">
+          <path d="M0,0 L9,4.5 L0,9 Z" fill="#fff3d6"/>
+        </marker>
+      </defs>
+      <g stroke="rgba(255,255,255,0.07)" stroke-width="1">
+        <line x1="0" y1="60" x2="480" y2="60"/><line x1="0" y1="110" x2="480" y2="110"/>
+        <line x1="0" y1="182" x2="480" y2="182"/>
+      </g>
+      <g filter="url(#earnGlow)" stroke="rgba(5,13,31,0.4)" stroke-width="1.5">
+        <ellipse cx="96"  cy="170" rx="42" ry="12" fill="url(#earnCoin)"/>
+        <ellipse cx="96"  cy="152" rx="42" ry="12" fill="url(#earnCoin)"/>
+        <ellipse cx="240" cy="170" rx="42" ry="12" fill="url(#earnCoin)"/>
+        <ellipse cx="240" cy="152" rx="42" ry="12" fill="url(#earnCoin)"/>
+        <ellipse cx="240" cy="134" rx="42" ry="12" fill="url(#earnCoin)"/>
+        <ellipse cx="240" cy="116" rx="42" ry="12" fill="url(#earnCoin)"/>
+        <ellipse cx="384" cy="170" rx="42" ry="12" fill="url(#earnCoin)"/>
+        <ellipse cx="384" cy="152" rx="42" ry="12" fill="url(#earnCoin)"/>
+        <ellipse cx="384" cy="134" rx="42" ry="12" fill="url(#earnCoin)"/>
+        <ellipse cx="384" cy="116" rx="42" ry="12" fill="url(#earnCoin)"/>
+        <ellipse cx="384" cy="98"  rx="42" ry="12" fill="url(#earnCoin)"/>
+        <ellipse cx="384" cy="80"  rx="42" ry="12" fill="url(#earnCoin)"/>
+      </g>
+      <path d="M44,132 C130,118 210,86 300,58 C340,46 380,36 424,30"
+            fill="none" stroke="url(#earnArrow)" stroke-width="5" stroke-linecap="round"
+            filter="url(#earnGlow)" marker-end="url(#earnHead)"/>
+    </svg>
     <h2 class="reveal">Benefit from <span class="accent">learning AI</span></h2>
     <p class="reveal">One-time payment. Lifetime access. A 7-day guarantee on both.</p>
     <div class="hero-ctas reveal">
