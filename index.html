@@ -117,7 +117,7 @@
   mask-image:radial-gradient(ellipse 80% 80% at 50% 45%,black 30%,transparent 100%);
   -webkit-mask-image:radial-gradient(ellipse 80% 80% at 50% 45%,black 30%,transparent 100%)}
 .home-hero .container{position:relative;z-index:2}
-.home-hero h1{font-family:var(--font-display);font-size:clamp(2.5rem,6vw,4.6rem);font-weight:800;line-height:1.05;letter-spacing:-0.028em;margin:24px auto 8px;max-width:15ch}
+.home-hero h1{font-family:var(--font-display);font-size:clamp(2.5rem,6vw,4.6rem);font-weight:800;line-height:1.05;letter-spacing:-0.028em;margin:24px auto 24px;max-width:15ch}
 .home-hero-tag{
   font-family:var(--font-body);font-style:italic;font-weight:500;
   font-size:clamp(0.95rem,3.2vw,1.42rem);color:rgba(255,255,255,0.6);
@@ -274,6 +274,44 @@
 .final::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 70% at 50% 50%,rgba(201,151,31,0.17),transparent 70%);pointer-events:none}
 .final h2{font-family:var(--font-display);font-size:clamp(2rem,4.6vw,3.4rem);font-weight:700;line-height:1.12;letter-spacing:-0.025em;margin-bottom:18px;position:relative}
 .final p{color:var(--white80);font-size:1.06rem;max-width:520px;margin:0 auto 38px;position:relative}
+
+/* Mobile: swipeable testimonials — one review per view, swipe left for more */
+@media (max-width:600px){
+  .testimonial-grid{
+    display:flex;
+    grid-template-columns:none;
+    overflow-x:auto;
+    scroll-snap-type:x mandatory;
+    -webkit-overflow-scrolling:touch;
+    gap:14px;
+    padding-bottom:14px;
+    margin-left:-20px;margin-right:-20px;
+    padding-left:20px;padding-right:20px;
+    scrollbar-width:none;
+  }
+  .testimonial-grid::-webkit-scrollbar{display:none}
+  .testimonial-grid .tcard{
+    flex:0 0 88%;
+    scroll-snap-align:center;
+  }
+}
+
+/* Savings badge — sharpens the price anchor */
+.course-save{
+  font-family:var(--font-mono);font-size:0.6rem;font-weight:500;
+  text-transform:uppercase;letter-spacing:0.1em;line-height:1;white-space:nowrap;
+  color:#0b1020;background:linear-gradient(135deg,var(--gold-bright),var(--cream));
+  padding:4px 9px;border-radius:100px;align-self:center;
+  box-shadow:0 2px 10px rgba(230,179,51,0.28);
+}
+
+/* Hero secondary link — a touch more discoverable */
+.hero-tertiary{color:rgba(255,255,255,0.62);border-color:rgba(255,255,255,0.24)}
+
+/* Sticky bar: full-width, thumb-friendly CTA on mobile */
+@media (max-width:600px){
+  #stickyBar .sticky-cta{flex:1;text-align:center}
+}
 </style>
 </head>
 <body data-page="home">
@@ -324,14 +362,14 @@
 <main id="main">
 
 <!-- ============ HERO ============ -->
-<section class="home-hero">
+<section class="home-hero" data-sticky-after>
   <div class="home-hero-bg"></div>
   <div class="home-hero-grid"></div>
   <div class="container">
     <span class="badge-eyebrow"><span class="dot"></span>Online academy<span class="dot"></span></span>
     <h1>Skills <span class="accent">University</span></h1>
     <div class="hero-courses">
-      <p class="hero-courses-lead">Learn AI practically with our two online course bootcamps</p>
+      <p class="hero-courses-lead">Learn AI practically with our two online courses</p>
       <ul class="hero-course-list">
         <li>AI Tools for Entrepreneurs</li>
         <li>AI Fundamentals for Kids</li>
@@ -341,7 +379,7 @@
       <a href="/ai-tools-for-entrepreneurs/" class="btn btn-gold">I'm an entrepreneur →</a>
       <a href="/ai-fundamentals-for-kids/" class="btn btn-gold">I'm a parent →</a>
     </div>
-    <a href="#courses" class="hero-tertiary">Or compare both courses ↓</a>
+    <a href="#courses" class="hero-tertiary">Get more details of courses ↓</a>
     <div class="trust-line">🛡️ <strong>7-day money-back guarantee</strong> &nbsp;·&nbsp; Secure encrypted checkout &nbsp;·&nbsp; Lifetime access</div>
 
     <div class="stat-row hero-stats reveal">
@@ -432,9 +470,9 @@
         </ul>
         <div class="course-foot">
           <div class="course-price">
-            <b id="p-ent">$85</b><s id="p-ent-old">$249</s><em>one-time · lifetime access</em>
+            <b id="p-ent">$85</b><s id="p-ent-old">$249</s><span class="course-save">Save 66%</span><em>one-time · lifetime access</em>
           </div>
-          <a href="/ai-tools-for-entrepreneurs/" class="course-cta">Explore the course <span class="arw">→</span></a>
+          <a href="/ai-tools-for-entrepreneurs/" class="course-cta">Get more course details <span class="arw">→</span></a>
           <div class="course-tagline">🎓 3,000+ entrepreneurs already enrolled</div>
           <div class="course-trust"><span>🛡️ 7-day guarantee</span><span>⚡ Instant access</span><span>♾️ Yours for life</span></div>
         </div>
@@ -513,9 +551,9 @@
         </ul>
         <div class="course-foot">
           <div class="course-price">
-            <b id="p-kid">$49</b><s id="p-kid-old">$149</s><em>one-time · lifetime access</em>
+            <b id="p-kid">$49</b><s id="p-kid-old">$149</s><span class="course-save">Save 67%</span><em>one-time · lifetime access</em>
           </div>
-          <a href="/ai-fundamentals-for-kids/" class="course-cta">Explore the course <span class="arw">→</span></a>
+          <a href="/ai-fundamentals-for-kids/" class="course-cta">Get more course details <span class="arw">→</span></a>
           <div class="course-tagline">👨‍👩‍👧 Parent-guided · no coding needed</div>
           <div class="course-trust"><span>🛡️ 7-day guarantee</span><span>🔒 Parent-controlled</span><span>♾️ Yours for life</span></div>
         </div>
@@ -585,7 +623,7 @@
         <span class="pill">🌍 Students in India, the UK, Europe &amp; the US</span>
       </div>
     </div>
-    <div class="grid-3" style="margin-top:44px">
+    <div class="grid-3 testimonial-grid" style="margin-top:44px">
       <div class="tcard reveal">
         <div class="tstars">★★★★★</div>
         <div class="tresult">🚀 Revenue grew 300%</div>
@@ -677,14 +715,14 @@
       <span class="shield">🛡️</span>
       <div>
         <h3>Your risk is zero for 7 days</h3>
-        <p>Buy either course, watch as much of it as you like, and if it isn't right for you, email us within 7 days. We refund you in full — no form to fill in, no reason required. In practice you are deciding whether to keep it <em>after</em> you've seen it, not before.</p>
+        <p>Buy either course, watch as much of it as you like, and if it isn't right for you, email us within 7 days. We refund you in full — no form to fill in, no reason required.</p>
       </div>
     </div>
   </div>
 </section>
 
 <!-- ============ FINAL CTA ============ -->
-<section class="final">
+<section class="final" data-sticky-stop>
   <div class="container">
     <svg class="final-art reveal" viewBox="0 0 480 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Three rising stacks of coins with an upward arrow, representing higher earning potential from AI skills">
       <title>Higher earning potential</title>
@@ -739,6 +777,12 @@
 </section>
 
 </main>
+
+<!-- ============ STICKY CTA BAR (shown on scroll, hidden at final CTA) ============ -->
+<div class="sticky-bar" id="stickyBar">
+  <div class="sticky-title">🦁 Practical AI courses — for entrepreneurs &amp; kids, from $49</div>
+  <a class="sticky-cta" href="#courses">View courses →</a>
+</div>
 
 <!-- ============ BLOG LINK STRIP ============ -->
 <div class="blog-strip">
