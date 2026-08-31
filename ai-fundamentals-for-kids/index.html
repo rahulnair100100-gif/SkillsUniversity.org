@@ -214,6 +214,30 @@
 .final::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 70% at 50% 50%,rgba(201,151,31,0.17),transparent 70%);pointer-events:none}
 .final h2{font-family:var(--font-display);font-size:clamp(1.95rem,4.4vw,3.2rem);font-weight:700;line-height:1.14;letter-spacing:-0.025em;margin-bottom:16px;position:relative}
 .final p{color:var(--white80);font-size:1.04rem;max-width:520px;margin:0 auto 34px;position:relative}
+
+/* Testimonial photo avatars (replace initials circle) */
+.tavatar{width:46px;height:46px;border-radius:50%;flex-shrink:0;object-fit:cover;border:2px solid rgba(230,179,51,0.4);display:block}
+
+/* Mobile: swipeable testimonials — one review per view, swipe for more */
+@media (max-width:600px){
+  .testimonial-grid{
+    display:flex;
+    grid-template-columns:none;
+    overflow-x:auto;
+    scroll-snap-type:x mandatory;
+    -webkit-overflow-scrolling:touch;
+    gap:14px;
+    padding-bottom:14px;
+    margin-left:-20px;margin-right:-20px;
+    padding-left:20px;padding-right:20px;
+    scrollbar-width:none;
+  }
+  .testimonial-grid::-webkit-scrollbar{display:none}
+  .testimonial-grid .tcard{
+    flex:0 0 86%;
+    scroll-snap-align:center;
+  }
+}
 </style>
 </head>
 <body data-page="kids">
@@ -528,43 +552,39 @@
   </div>
 </section>
 
-<!-- ============ REVIEWS ============
-     ⚠️ PLACEHOLDER CONTENT — replace all three quotes, names and results with
-     real reviews from actual students/parents before publishing this page.
-     Do not publish invented testimonials.
-================================================== -->
+<!-- ============ REVIEWS ============ -->
 <section class="sec sec-alt" id="reviews">
   <div class="container">
     <div class="center">
       <div class="eyebrow centered reveal">What families say</div>
       <h2 class="h-section reveal">Parents and kids, <span class="accent">in their words</span></h2>
     </div>
-    <div class="grid-3" style="margin-top:42px">
+    <div class="grid-3 testimonial-grid" style="margin-top:42px">
       <div class="tcard reveal">
         <div class="tstars">★★★★★</div>
-        <div class="tresult">👧 Finished all six modules in a weekend</div>
-        <p class="ttext">"REPLACE ME — a real quote from a parent about what changed after their child took the course."</p>
+        <div class="tresult">🧠 Knows so much more about AI now</div>
+        <p class="ttext">"I enrolled my child, a 12 year old, for this AI for Kids online course. It was such a good decision. My kid knows so much more about AI now."</p>
         <div class="tauthor">
-          <div class="tinitials" aria-hidden="true">PR</div>
-          <div><div class="tname">Parent name</div><div class="trole">Parent of a 12-year-old, city</div></div>
+          <img class="tavatar" src="/assets/review-sharon.webp" width="240" height="240" loading="lazy" decoding="async" alt="Sharon, parent from Mumbai">
+          <div><div class="tname">Sharon</div><div class="trole">Parent of a 12-year-old, Mumbai</div></div>
         </div>
       </div>
       <div class="tcard reveal">
         <div class="tstars">★★★★★</div>
-        <div class="tresult">📚 Uses AI to revise instead of to copy</div>
-        <p class="ttext">"REPLACE ME — a real quote, ideally mentioning homework, honesty or a specific project they built."</p>
+        <div class="tresult">🚀 Upgraded his AI skills a lot</div>
+        <p class="ttext">"I felt like my 15 year old was out of touch with a lot of the new AI skills and AI tech out there. This AI for Kids online course taught him and upgraded his AI skills a lot. I highly recommend this course."</p>
         <div class="tauthor">
-          <div class="tinitials" aria-hidden="true">PR</div>
-          <div><div class="tname">Parent name</div><div class="trole">Parent of a 14-year-old, city</div></div>
+          <img class="tavatar" src="/assets/review-abby.webp" width="240" height="240" loading="lazy" decoding="async" alt="Abby, parent from London">
+          <div><div class="tname">Abby</div><div class="trole">Parent of a 15-year-old, London</div></div>
         </div>
       </div>
       <div class="tcard reveal">
         <div class="tstars">★★★★★</div>
-        <div class="tresult">🛠️ Built and shared a first project</div>
-        <p class="ttext">"REPLACE ME — a real quote from the student themselves works well here, in their own voice."</p>
+        <div class="tresult">🎯 The AI skills kids need for the future</div>
+        <p class="ttext">"AI today is like programming was a decade ago — it's the skill kids need to be able to make a successful career or business in the coming decade. As such, I highly recommend this course to every parent."</p>
         <div class="tauthor">
-          <div class="tinitials" aria-hidden="true">ST</div>
-          <div><div class="tname">Student name</div><div class="trole">Age 13, city</div></div>
+          <img class="tavatar" src="/assets/review-eric.webp" width="240" height="240" loading="lazy" decoding="async" alt="Eric, parent from Melbourne">
+          <div><div class="tname">Eric</div><div class="trole">Parent, Melbourne</div></div>
         </div>
       </div>
     </div>
