@@ -581,12 +581,13 @@ nav {
 
 .ba-frame img {
   width: 100%;
-  aspect-ratio: 1 / 1;
+  height: auto;
+  aspect-ratio: 4 / 5;
   object-fit: cover;
   display: block;
 }
 
-.problem-answer-img .ba-frame img { object-position: center 38%; }
+.problem-answer-img .ba-frame img { object-position: center; }
 
 .ba-chip {
   position: absolute;
@@ -652,13 +653,23 @@ nav {
 }
 
 @media (max-width: 640px) {
-  .problem-grid { column-gap: 6px; row-gap: 0; margin-top: 22px; }
-  .ba-frame { border-radius: 12px; }
-  .ba-arrow svg { width: 34px; height: 17px; }
-  .ba-arrow-label { font-size: 0.5rem; letter-spacing: 0.1em; }
-  .ba-chip { font-size: 0.52rem; padding: 4px 8px; bottom: 8px; left: 8px; letter-spacing: 0.1em; }
-  .ba-caption { margin-top: 9px; font-size: 0.76rem; line-height: 1.35; }
-  @keyframes baArrow { 0%, 100% { transform: translateX(0); } 50% { transform: translateX(4px); } }
+  .problem-section .problem-grid {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+    column-gap: 0;
+    row-gap: 0;
+    margin-top: 22px;
+  }
+  .problem-section .problem-grid .ba-frame,
+  .problem-section .problem-grid .ba-caption { width: 100%; max-width: 360px; }
+  .problem-section .ba-frame { border-radius: 12px; }
+  .problem-section .ba-caption { margin-top: 10px; font-size: 0.9rem; line-height: 1.4; }
+  .problem-section .ba-arrow { margin: 16px 0 8px; }
+  .problem-section .ba-arrow svg { width: 34px; height: 17px; transform: rotate(90deg); }
+  .problem-section .ba-arrow-label { font-size: 0.58rem; letter-spacing: 0.16em; margin-top: 4px; }
+  @keyframes baArrow { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(4px); } }
 }
 
 /* Keep the challenges heading to two balanced lines */
@@ -3330,7 +3341,7 @@ body.site-modal-open { overflow: hidden; }
     <div class="problem-grid">
       <figure class="problem-image-wrap reveal">
         <div class="ba-frame">
-          <img src="/assets/problem.webp" width="900" height="900" loading="lazy" decoding="async" alt="Entrepreneur confused about how to grow his business" class="problem-img">
+          <img src="/assets/problem-before.webp" width="1080" height="1350" loading="lazy" decoding="async" alt="Entrepreneur thinking: everyone says use AI for business growth, but how?" class="problem-img">
           <span class="ba-chip ba-chip-before">Before</span>
         </div>
         <figcaption class="ba-caption">Guessing, stuck, no clear plan</figcaption>
@@ -3348,7 +3359,7 @@ body.site-modal-open { overflow: hidden; }
 
       <figure class="problem-answer-img reveal">
         <div class="ba-frame ba-frame-gold">
-          <img src="/assets/ai-entrepreneur.webp" width="900" height="1125" loading="lazy" decoding="async"
+          <img src="/assets/problem-after.webp" width="1080" height="1350" loading="lazy" decoding="async"
                alt="A business owner smiling, thinking: AI tools now make me more money and sales">
           <span class="ba-chip ba-chip-after">After</span>
         </div>
