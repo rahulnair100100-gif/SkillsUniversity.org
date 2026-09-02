@@ -175,3 +175,171 @@
     });
   });
 })();
+
+/* ============================================================
+   Exit-intent email opt-in ("Enter your email and get 20% off")
+   Self-injecting: any page that loads su.js gets this popup.
+   - Desktop: fires when the cursor leaves the top of the window
+     (classic exit intent — the closest thing to "pressing the X").
+   - Mobile: browsers CANNOT detect a tab-close tap, so we fire on
+     the Back gesture (exit intent) and, as a fallback, once the
+     visitor has scrolled ~60% or spent ~30s on the page.
+   - Shows at most once per visitor every 7 days (localStorage).
+   - Add  data-no-optin  to <body> on any page to suppress it.
+   ============================================================ */
+(function () {
+  'use strict';
+  if (document.body.hasAttribute('data-no-optin')) return;
+
+  var CONFIG = {
+    storageKey: 'su_optin_v1',
+    suppressDays: 7,
+    promoCode: 'WELCOME20',           // TODO: create this 20%-off coupon in Teachable
+    fallbackDelayMs: 30000,           // mobile fallback: show after 30s...
+    fallbackScrollPct: 0.6            // ...or after scrolling 60%, whichever comes first
+  };
+
+  /* --- Where captured emails should go ---------------------------------
+     By default the email is only stored in the browser. To actually
+     COLLECT addresses, set window.SU_OPTIN_SUBMIT on the page to a function
+     that returns a Promise, e.g. POST to Mailchimp / ConvertKit / Formspree
+     / a Teachable form. Example:
+       window.SU_OPTIN_SUBMIT = function (email) {
+         return fetch('https://YOUR-ENDPOINT', {
+           method:'POST', headers:{'Content-Type':'application/json'},
+           body: JSON.stringify({ email: email })
+         });
+       };
+  --------------------------------------------------------------------- */
+
+  function seen() {
+    try {
+      var raw = localStorage.getItem(CONFIG.storageKey);
+      if (!raw) return false;
+      var o = JSON.parse(raw);
+      if (o && o.sub) return true;                       // already subscribed → never nag again
+      if (o && o.ts && (Date.now() - o.ts) < CONFIG.suppressDays * 864e5) return true;
+      return false;
+    } catch (e) { return false; }
+  }
+  function mark(sub) {
+    try { localStorage.setItem(CONFIG.storageKey, JSON.stringify({ ts: Date.now(), sub: !!sub })); } catch (e) {}
+  }
+  if (seen()) return;
+
+  var shown = false, armed = false;
+
+  var overlay = document.createElement('div');
+  overlay.className = 'su-optin-overlay';
+  overlay.setAttribute('role', 'dialog');
+  overlay.setAttribute('aria-modal', 'true');
+  overlay.setAttribute('aria-label', 'Get 20% off');
+  overlay.innerHTML =
+    '<div class="su-optin">' +
+      '<button class="su-optin-close" type="button" aria-label="Close">&times;</button>' +
+      '<div class="su-optin-view su-optin-offer">' +
+        '<span class="su-optin-badge">Wait — before you go</span>' +
+        '<h3>Get <span>20% off</span> your first course</h3>' +
+        '<p>Enter your email and we\u2019ll send you a 20% discount code you can use on any SkillsUniversity course.</p>' +
+        '<form class="su-optin-form" novalidate>' +
+          '<input class="su-optin-input" type="email" inputmode="email" autocomplete="email" placeholder="you@email.com" aria-label="Email address" required>' +
+          '<div class="su-optin-err" aria-live="polite"></div>' +
+          '<button class="su-optin-btn" type="submit">Send my 20% code</button>' +
+        '</form>' +
+        '<div class="su-optin-fine">No spam. Unsubscribe anytime.</div>' +
+      '</div>' +
+      '<div class="su-optin-view su-optin-success" style="display:none">' +
+        '<span class="su-optin-badge">You\u2019re in \u2713</span>' +
+        '<h3>Here\u2019s your <span>20% off</span> code</h3>' +
+        '<div class="su-optin-code">' + CONFIG.promoCode + '</div>' +
+        '<p>Apply it at checkout. We\u2019ve also emailed it to you \u2014 check your inbox.</p>' +
+      '</div>' +
+    '</div>';
+  document.body.appendChild(overlay);
+
+  var offerView = overlay.querySelector('.su-optin-offer');
+  var successView = overlay.querySelector('.su-optin-success');
+  var form = overlay.querySelector('.su-optin-form');
+  var input = overlay.querySelector('.su-optin-input');
+  var err = overlay.querySelector('.su-optin-err');
+
+  function open() {
+    if (shown) return;
+    shown = true;
+    overlay.classList.add('open');
+    document.body.classList.add('modal-open');
+    mark(false);
+    setTimeout(function () { try { input.focus(); } catch (e) {} }, 120);
+    if (typeof gtag === 'function') { try { gtag('event', 'optin_shown'); } catch (e) {} }
+  }
+  function close() {
+    overlay.classList.remove('open');
+    document.body.classList.remove('modal-open');
+  }
+
+  overlay.querySelector('.su-optin-close').addEventListener('click', close);
+  overlay.addEventListener('click', function (e) { if (e.target === overlay) close(); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && overlay.classList.contains('open')) close(); });
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var email = (input.value || '').trim();
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      err.textContent = 'Please enter a valid email address.';
+      input.focus();
+      return;
+    }
+    err.textContent = '';
+    var btn = form.querySelector('.su-optin-btn');
+    btn.disabled = true; btn.textContent = 'Sending\u2026';
+
+    var submit = (typeof window.SU_OPTIN_SUBMIT === 'function')
+      ? window.SU_OPTIN_SUBMIT(email)
+      : Promise.resolve();
+
+    Promise.resolve(submit).then(function () {
+      mark(true);
+      if (typeof gtag === 'function') { try { gtag('event', 'generate_lead', { method: 'exit_optin' }); } catch (e) {} }
+      offerView.style.display = 'none';
+      successView.style.display = 'block';
+    }).catch(function () {
+      // Even if the provider call fails, don't block the visitor from their code.
+      mark(true);
+      offerView.style.display = 'none';
+      successView.style.display = 'block';
+    });
+  });
+
+  /* ---- Triggers ---- */
+  var coarse = window.matchMedia('(hover: none), (pointer: coarse)').matches;
+
+  function arm() {
+    if (armed) return;
+    armed = true;
+
+    // Desktop exit intent: cursor leaves through the top of the viewport.
+    document.addEventListener('mouseout', function (e) {
+      if (shown) return;
+      if (!e.relatedTarget && e.clientY <= 0) open();
+    });
+
+    // Mobile "trying to leave": the Back gesture.
+    try {
+      history.pushState({ suOptin: 1 }, '');
+      window.addEventListener('popstate', function () { if (!shown) open(); });
+    } catch (e) {}
+
+    if (coarse) {
+      // Mobile fallback so the offer is actually seen (tab-close can't be detected).
+      setTimeout(function () { open(); }, CONFIG.fallbackDelayMs);
+      window.addEventListener('scroll', function onScroll() {
+        var h = document.documentElement;
+        var pct = (h.scrollTop) / ((h.scrollHeight - h.clientHeight) || 1);
+        if (pct >= CONFIG.fallbackScrollPct) { window.removeEventListener('scroll', onScroll); open(); }
+      }, { passive: true });
+    }
+  }
+
+  // Don't arm instantly — give the visitor a few seconds first.
+  setTimeout(arm, 4000);
+})();

@@ -25,7 +25,7 @@
 }
 
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;overflow-x:hidden}
 body{
   font-family:var(--font-body);
   background:var(--navy);
@@ -108,10 +108,21 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--gold-glow);outline-
 .su-mobile a small{display:block;font-size:0.75rem;color:var(--white50);font-weight:400;margin-top:2px}
 
 @media (max-width:900px){
-  .su-nav{padding:12px 16px}
+  .su-nav{padding:12px 16px;gap:10px}
   .su-navlinks{display:none}
   .su-burger{display:block;order:3}
   .su-nav-cta{padding:9px 16px;font-size:0.8rem;order:2}
+  /* Stack the tagline BELOW the brand name on mobile so the whole header
+     (logo + brand + CTA + burger) fits within the screen without overflow. */
+  .su-brand>span{display:flex;flex-direction:column;gap:1px;min-width:0}
+}
+@media (max-width:420px){
+  .su-nav{padding:10px 12px;gap:8px}
+  .su-brand img{width:44px}
+  .su-brand-name{font-size:0.88rem}
+  .su-brand-tag{font-size:0.55rem}
+  .su-nav-cta{padding:8px 12px;font-size:0.72rem}
+  .su-burger{width:36px;height:34px;font-size:1rem}
 }
 
 /* ===== Typography helpers ===== */
@@ -391,3 +402,59 @@ body.modal-open{overflow:hidden}
 .sec-tight{padding:68px 0}
 .sec-alt{background:var(--navy2)}
 @media (max-width:600px){.sec{padding:64px 0}.sec-tight{padding:48px 0}.container,.container-narrow{padding:0 16px}}
+
+/* ===== Exit-intent email opt-in popup ===== */
+.su-optin-overlay{
+  position:fixed;inset:0;z-index:1000;display:none;align-items:center;justify-content:center;
+  padding:20px;background:rgba(3,8,20,0.82);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
+}
+.su-optin-overlay.open{display:flex;animation:suOptinFade .25s ease}
+@keyframes suOptinFade{from{opacity:0}to{opacity:1}}
+.su-optin{
+  position:relative;width:100%;max-width:440px;
+  background:linear-gradient(160deg,var(--navy3),var(--navy2));
+  border:1px solid var(--border);border-radius:20px;
+  padding:40px 32px 34px;text-align:center;
+  box-shadow:0 30px 80px rgba(0,0,0,0.6);
+  animation:suOptinPop .3s cubic-bezier(.2,.9,.3,1.2);
+}
+@keyframes suOptinPop{from{opacity:0;transform:translateY(16px) scale(.97)}to{opacity:1;transform:none}}
+.su-optin-close{
+  position:absolute;top:12px;right:14px;background:none;border:none;color:var(--white50);
+  font-size:1.6rem;line-height:1;cursor:pointer;width:36px;height:36px;border-radius:8px;transition:color .2s,background .2s;
+}
+.su-optin-close:hover{color:var(--white);background:rgba(255,255,255,0.08)}
+.su-optin-badge{
+  display:inline-block;font-family:var(--font-mono);font-size:0.68rem;letter-spacing:0.16em;
+  text-transform:uppercase;color:var(--gold-bright);border:1px solid var(--border);
+  border-radius:999px;padding:6px 14px;margin-bottom:16px;
+}
+.su-optin h3{font-family:var(--font-display);font-size:1.55rem;line-height:1.2;color:var(--white);margin-bottom:10px}
+.su-optin h3 span{color:var(--gold-bright)}
+.su-optin p{font-size:0.95rem;color:var(--white65);line-height:1.6;margin-bottom:22px}
+.su-optin-form{display:flex;flex-direction:column;gap:10px}
+.su-optin-input{
+  width:100%;padding:14px 16px;border-radius:10px;border:1px solid var(--border);
+  background:rgba(5,13,31,0.6);color:var(--white);font-size:1rem;font-family:var(--font-body);
+}
+.su-optin-input::placeholder{color:var(--white50)}
+.su-optin-input:focus{outline:none;border-color:var(--gold-bright);box-shadow:0 0 0 3px rgba(230,179,51,0.18)}
+.su-optin-btn{
+  width:100%;padding:14px 16px;border:none;border-radius:10px;cursor:pointer;
+  background:linear-gradient(135deg,var(--gold) 0%,#9c7016 100%);color:var(--white);
+  font-family:var(--font-display);font-weight:700;font-size:1rem;
+  box-shadow:0 4px 20px rgba(201,151,31,0.4),inset 0 1px 0 rgba(255,255,255,0.15);transition:transform .2s,box-shadow .2s;
+}
+.su-optin-btn:hover{transform:translateY(-2px);box-shadow:0 6px 28px rgba(201,151,31,0.55),inset 0 1px 0 rgba(255,255,255,0.15)}
+.su-optin-err{color:#ff9b9b;font-size:0.82rem;min-height:1em;margin-top:2px}
+.su-optin-fine{font-size:0.72rem;color:var(--white50);margin-top:14px}
+.su-optin-success h3{margin-bottom:8px}
+.su-optin-code{
+  display:inline-block;font-family:var(--font-mono);font-size:1.15rem;letter-spacing:0.1em;
+  color:var(--gold-bright);background:rgba(5,13,31,0.6);border:1px dashed var(--gold-bright);
+  border-radius:10px;padding:12px 22px;margin:6px 0 4px;
+}
+@media (max-width:420px){
+  .su-optin{padding:34px 20px 28px;border-radius:16px}
+  .su-optin h3{font-size:1.3rem}
+}
