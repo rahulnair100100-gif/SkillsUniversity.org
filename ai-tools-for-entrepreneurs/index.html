@@ -309,6 +309,37 @@ nav {
   .nav-links { display: none; }
 }
 
+/* ── Mobile hamburger + dropdown menu ── */
+.eb-burger {
+  display: none; background: none; border: 1px solid var(--border);
+  border-radius: 8px; color: var(--white); width: 40px; height: 38px;
+  cursor: pointer; font-size: 1.1rem; line-height: 1; margin-left: 14px; flex-shrink: 0;
+}
+.eb-mobile {
+  display: none; border-bottom: 1px solid var(--border); background: var(--navy2);
+}
+.eb-mobile.open { display: block; }
+.eb-mobile a {
+  display: block; padding: 14px 20px; border-bottom: 1px solid rgba(255,255,255,0.06);
+  text-decoration: none; font-size: 0.95rem; font-weight: 500; color: var(--white80);
+}
+.eb-mobile a:last-child { border-bottom: none; }
+.eb-mobile a small { display: block; font-size: 0.75rem; color: var(--white50); font-weight: 400; margin-top: 2px; }
+@media (max-width: 640px) {
+  .eb-burger { display: block; }
+  nav { gap: 10px; }
+}
+@media (max-width: 440px) {
+  nav { padding: 14px 14px; }
+  .nav-logo-img { width: 48px !important; height: 48px !important; }
+  .nav-logo { font-size: 0.92rem; }
+  .nav-cta-btn { padding: 8px 12px; font-size: 0.76rem; }
+}
+@media (max-width: 380px) {
+  .eb-burger { width: 36px; height: 34px; font-size: 1rem; margin-left: 10px; }
+  .nav-logo-img { width: 44px !important; height: 44px !important; }
+}
+
 /* ── Courses dropdown ── */
 .nav-drop { position: relative; }
 
@@ -3280,7 +3311,20 @@ body.site-modal-open { overflow: hidden; }
     <a href="https://skillsuniversity.teachable.com/purchase?product_id=6785586" target="_blank" rel="noopener" data-checkout class="nav-cta-btn">Enroll Now<span class="nav-cta-price"> — <span id="price-nav-cta">$89</span></span></a>
   </div>
 
+  <button class="eb-burger" id="ebBurger" onclick="ebToggleMenu()" aria-label="Open menu" aria-expanded="false" aria-controls="ebMobile">&#9776;</button>
+
 </nav>
+
+<!-- Mobile dropdown menu (opens from the ☰ button) -->
+<div class="eb-mobile" id="ebMobile">
+  <a href="/">Home</a>
+  <a href="/ai-tools-for-entrepreneurs/" aria-current="page">AI Tools for Entrepreneurs<small>For founders &amp; business owners</small></a>
+  <a href="/ai-fundamentals-for-kids/">AI Fundamentals for Kids<small>Ages 10&ndash;16</small></a>
+  <a href="#modules">Curriculum</a>
+  <a href="#pricing">Pricing</a>
+  <a href="/blog/entrepreneurs/">Blog</a>
+  <a href="/affiliates/">Affiliates<small>Earn 50% commission</small></a>
+</div>
 
 <!-- HERO -->
 <section class="hero">
@@ -4046,6 +4090,7 @@ body.site-modal-open { overflow: hidden; }
         <a href="/ai-fundamentals-for-kids/">AI Fundamentals for Kids</a>
         <a href="#" onclick="openSiteModal('about-modal'); return false;">About us</a>
         <a href="/blog/entrepreneurs/">Blog</a>
+        <a href="/affiliates/">Affiliates</a>
         <a href="https://skillsuniversity.teachable.com/purchase?product_id=6785586" target="_blank" rel="noopener" data-checkout>Pricing</a>
         <a href="https://www.linkedin.com/company/skillsuniversity-org/" target="_blank" rel="noopener">Careers</a>
         <a href="#" onclick="openSiteModal('privacy-modal'); return false;">Privacy Policy</a>
@@ -4436,6 +4481,152 @@ document.querySelectorAll('a[href^="#"]').forEach(function(a) {
     if (el) { e.preventDefault(); el.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
   });
 });
+</script>
+
+<!-- Mobile menu toggle + exit-intent email opt-in (self-contained for this page) -->
+<script>
+(function () {
+  'use strict';
+
+  /* ---- Mobile hamburger menu ---- */
+  window.ebToggleMenu = function () {
+    var m = document.getElementById('ebMobile');
+    var b = document.getElementById('ebBurger');
+    if (!m) return;
+    var open = m.classList.toggle('open');
+    if (b) b.setAttribute('aria-expanded', open ? 'true' : 'false');
+  };
+
+  /* ---- Exit-intent email opt-in: "Enter your email and get 20% off" ----
+     Desktop: fires when the cursor leaves the top of the window.
+     Mobile: fires on the Back gesture and, as a fallback, after ~30s or 60% scroll
+     (a tab-close tap cannot be detected by any browser). Shows once per 7 days. */
+  var CONFIG = {
+    storageKey: 'su_optin_v1',   // shared with the rest of the site
+    suppressDays: 7,
+    promoCode: 'WELCOME20',      // TODO: create this 20%-off coupon in Teachable
+    fallbackDelayMs: 30000,
+    fallbackScrollPct: 0.6
+  };
+
+  function seen() {
+    try {
+      var raw = localStorage.getItem(CONFIG.storageKey);
+      if (!raw) return false;
+      var o = JSON.parse(raw);
+      if (o && o.sub) return true;
+      if (o && o.ts && (Date.now() - o.ts) < CONFIG.suppressDays * 864e5) return true;
+      return false;
+    } catch (e) { return false; }
+  }
+  function mark(sub) {
+    try { localStorage.setItem(CONFIG.storageKey, JSON.stringify({ ts: Date.now(), sub: !!sub })); } catch (e) {}
+  }
+  if (seen()) return;
+
+  var css =
+    '.eb-optin-overlay{position:fixed;inset:0;z-index:2000;display:none;align-items:center;justify-content:center;padding:20px;background:rgba(3,8,20,.82);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}' +
+    '.eb-optin-overlay.open{display:flex}' +
+    '.eb-optin{position:relative;width:100%;max-width:440px;background:linear-gradient(160deg,var(--navy3,#0d1f45),var(--navy2,#08152e));border:1px solid var(--border,rgba(230,179,51,.25));border-radius:20px;padding:40px 32px 34px;text-align:center;box-shadow:0 30px 80px rgba(0,0,0,.6);font-family:var(--font-body,sans-serif)}' +
+    '.eb-optin-close{position:absolute;top:12px;right:14px;background:none;border:none;color:rgba(255,255,255,.5);font-size:1.6rem;line-height:1;cursor:pointer;width:36px;height:36px;border-radius:8px}' +
+    '.eb-optin-close:hover{color:#fff;background:rgba(255,255,255,.08)}' +
+    '.eb-optin-badge{display:inline-block;font-family:var(--font-mono,monospace);font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:var(--blue-bright,#e6b333);border:1px solid var(--border,rgba(230,179,51,.25));border-radius:999px;padding:6px 14px;margin-bottom:16px}' +
+    '.eb-optin h3{font-size:1.55rem;line-height:1.2;color:#fff;margin:0 0 10px;font-weight:800}' +
+    '.eb-optin h3 span{color:var(--blue-bright,#e6b333)}' +
+    '.eb-optin p{font-size:.95rem;color:rgba(255,255,255,.65);line-height:1.6;margin:0 0 22px}' +
+    '.eb-optin-form{display:flex;flex-direction:column;gap:10px}' +
+    '.eb-optin-input{width:100%;padding:14px 16px;border-radius:10px;border:1px solid var(--border,rgba(230,179,51,.25));background:rgba(5,13,31,.6);color:#fff;font-size:1rem}' +
+    '.eb-optin-input:focus{outline:none;border-color:var(--blue-bright,#e6b333);box-shadow:0 0 0 3px rgba(230,179,51,.18)}' +
+    '.eb-optin-btn{width:100%;padding:14px 16px;border:none;border-radius:10px;cursor:pointer;background:linear-gradient(135deg,#c9971f 0%,#9c7016 100%);color:#fff;font-weight:700;font-size:1rem;box-shadow:0 4px 20px rgba(201,151,31,.4)}' +
+    '.eb-optin-btn:hover{transform:translateY(-2px)}' +
+    '.eb-optin-err{color:#ff9b9b;font-size:.82rem;min-height:1em;margin-top:2px}' +
+    '.eb-optin-fine{font-size:.72rem;color:rgba(255,255,255,.5);margin-top:14px}' +
+    '.eb-optin-code{display:inline-block;font-family:var(--font-mono,monospace);font-size:1.15rem;letter-spacing:.1em;color:var(--blue-bright,#e6b333);background:rgba(5,13,31,.6);border:1px dashed var(--blue-bright,#e6b333);border-radius:10px;padding:12px 22px;margin:6px 0 4px}' +
+    '@media(max-width:420px){.eb-optin{padding:34px 20px 28px;border-radius:16px}.eb-optin h3{font-size:1.3rem}}';
+  var st = document.createElement('style'); st.textContent = css; document.head.appendChild(st);
+
+  var shown = false, armed = false;
+  var overlay = document.createElement('div');
+  overlay.className = 'eb-optin-overlay';
+  overlay.setAttribute('role', 'dialog');
+  overlay.setAttribute('aria-modal', 'true');
+  overlay.setAttribute('aria-label', 'Get 20% off');
+  overlay.innerHTML =
+    '<div class="eb-optin">' +
+      '<button class="eb-optin-close" type="button" aria-label="Close">&times;</button>' +
+      '<div class="eb-optin-offer">' +
+        '<span class="eb-optin-badge">Wait \u2014 before you go</span>' +
+        '<h3>Get <span>20% off</span> the masterclass</h3>' +
+        '<p>Enter your email and we\u2019ll send you a 20% discount code for the AI Tools for Entrepreneurs masterclass.</p>' +
+        '<form class="eb-optin-form" novalidate>' +
+          '<input class="eb-optin-input" type="email" inputmode="email" autocomplete="email" placeholder="you@email.com" aria-label="Email address" required>' +
+          '<div class="eb-optin-err" aria-live="polite"></div>' +
+          '<button class="eb-optin-btn" type="submit">Send my 20% code</button>' +
+        '</form>' +
+        '<div class="eb-optin-fine">No spam. Unsubscribe anytime.</div>' +
+      '</div>' +
+      '<div class="eb-optin-success" style="display:none">' +
+        '<span class="eb-optin-badge">You\u2019re in \u2713</span>' +
+        '<h3>Here\u2019s your <span>20% off</span> code</h3>' +
+        '<div class="eb-optin-code">' + CONFIG.promoCode + '</div>' +
+        '<p>Apply it at checkout. We\u2019ve also emailed it to you \u2014 check your inbox.</p>' +
+      '</div>' +
+    '</div>';
+  document.body.appendChild(overlay);
+
+  var offerView = overlay.querySelector('.eb-optin-offer');
+  var successView = overlay.querySelector('.eb-optin-success');
+  var form = overlay.querySelector('.eb-optin-form');
+  var input = overlay.querySelector('.eb-optin-input');
+  var err = overlay.querySelector('.eb-optin-err');
+
+  function open() {
+    if (shown) return;
+    shown = true;
+    overlay.classList.add('open');
+    mark(false);
+    setTimeout(function () { try { input.focus(); } catch (e) {} }, 120);
+    if (typeof gtag === 'function') { try { gtag('event', 'optin_shown'); } catch (e) {} }
+  }
+  function close() { overlay.classList.remove('open'); }
+
+  overlay.querySelector('.eb-optin-close').addEventListener('click', close);
+  overlay.addEventListener('click', function (e) { if (e.target === overlay) close(); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && overlay.classList.contains('open')) close(); });
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var email = (input.value || '').trim();
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { err.textContent = 'Please enter a valid email address.'; input.focus(); return; }
+    err.textContent = '';
+    var btn = form.querySelector('.eb-optin-btn');
+    btn.disabled = true; btn.textContent = 'Sending\u2026';
+    var submit = (typeof window.SU_OPTIN_SUBMIT === 'function') ? window.SU_OPTIN_SUBMIT(email) : Promise.resolve();
+    Promise.resolve(submit).then(done).catch(done);
+    function done() {
+      mark(true);
+      if (typeof gtag === 'function') { try { gtag('event', 'generate_lead', { method: 'exit_optin' }); } catch (e) {} }
+      offerView.style.display = 'none';
+      successView.style.display = 'block';
+    }
+  });
+
+  var coarse = window.matchMedia('(hover: none), (pointer: coarse)').matches;
+  function arm() {
+    if (armed) return; armed = true;
+    document.addEventListener('mouseout', function (e) { if (!shown && !e.relatedTarget && e.clientY <= 0) open(); });
+    try { history.pushState({ ebOptin: 1 }, ''); window.addEventListener('popstate', function () { if (!shown) open(); }); } catch (e) {}
+    if (coarse) {
+      setTimeout(open, CONFIG.fallbackDelayMs);
+      window.addEventListener('scroll', function onScroll() {
+        var h = document.documentElement;
+        var pct = h.scrollTop / ((h.scrollHeight - h.clientHeight) || 1);
+        if (pct >= CONFIG.fallbackScrollPct) { window.removeEventListener('scroll', onScroll); open(); }
+      }, { passive: true });
+    }
+  }
+  setTimeout(arm, 4000);
+})();
 </script>
 </body>
 </html>
