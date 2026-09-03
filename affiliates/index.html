@@ -116,6 +116,23 @@
   .apply-band h2{font-family:var(--font-display);font-weight:800;font-size:clamp(1.8rem,4.2vw,2.6rem);letter-spacing:-0.025em;margin-bottom:14px}
   .apply-band p{color:var(--white65);max-width:560px;margin:0 auto 26px;line-height:1.7}
 </style>
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1242678657994281');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1242678657994281&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
 </head>
 
 <body data-page="affiliates" data-no-optin>
@@ -402,5 +419,6 @@
 </footer>
 
 <script src="/assets/su.js" defer></script>
+<script src="/assets/su-optin.js" defer></script>
 </body>
 </html>
