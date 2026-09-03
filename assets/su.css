@@ -402,6 +402,7 @@ body.modal-open{overflow:hidden}
 .sec-tight{padding:68px 0}
 .sec-alt{background:var(--navy2)}
 @media (max-width:600px){.sec{padding:64px 0}.sec-tight{padding:48px 0}.container,.container-narrow{padding:0 16px}}
+@media (max-width:768px){.mission{grid-template-columns:1fr !important;gap:28px !important}}
 
 /* ===== Exit-intent email opt-in popup ===== */
 .su-optin-overlay{
