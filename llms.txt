@@ -23,6 +23,21 @@
 - [AI Email Marketing for Small Business](https://skillsuniversity.org/blog/ai-email-marketing-small-business.html): AI drafting, subject line testing, and the three essential automated sequences.
 - [How to Use AI for Customer Retention and Repeat Sales](https://skillsuniversity.org/blog/ai-customer-retention-repeat-sales.html): Spotting at-risk customers and automating personal follow-ups.
 
+## AI for Kids Blog
+
+Practical, no-fluff guides for parents of 10–16 year olds on teaching kids AI safely and well.
+
+- [AI for Kids: The Complete Parent's Guide](https://skillsuniversity.org/blog/kids/ai-for-kids-complete-parents-guide.html): The complete parent's guide — what age to start, safety, tools, skills and how to begin.
+- [Is Character.AI Safe for Kids?](https://skillsuniversity.org/blog/kids/is-character-ai-safe-for-kids.html): Is Character.AI safe for kids? The risks of AI companion apps and what parents should do.
+- [Free AI Courses & Resources for Kids](https://skillsuniversity.org/blog/kids/free-ai-courses-resources-for-kids.html): The best free AI courses, tools and resources for kids, and when a paid course is worth it.
+- [Prompt Engineering for Kids](https://skillsuniversity.org/blog/kids/prompt-engineering-for-kids.html): How to teach kids to write good AI prompts — a simple framework with examples by age.
+- [ChatGPT vs Gemini vs Claude for Kids](https://skillsuniversity.org/blog/kids/chatgpt-vs-gemini-vs-claude-for-kids.html): ChatGPT vs Gemini vs Claude for kids and students — compared on safety, cost and strengths.
+- [AI Tools for Kids with ADHD & Dyslexia](https://skillsuniversity.org/blog/kids/ai-tools-for-kids-with-adhd-dyslexia.html): How AI tools help kids with ADHD, dyslexia and learning differences, with honest guardrails.
+- [How to Set Up AI Safely for Your Child](https://skillsuniversity.org/blog/kids/how-to-set-up-ai-safely-for-your-child.html): A step-by-step guide to setting up AI safely for a child, including age limits for each tool.
+- [A Family AI Agreement (Free Template)](https://skillsuniversity.org/blog/kids/family-ai-agreement-rules-for-kids.html): A free family AI agreement template and the AI rules that actually work.
+- [AI Tutor vs Human Tutor](https://skillsuniversity.org/blog/kids/ai-tutor-vs-human-tutor-for-kids.html): AI tutor vs human tutor — whether AI can replace tutoring for your child.
+- [AI Glossary for Parents: 30 Terms](https://skillsuniversity.org/blog/kids/ai-glossary-for-parents.html): A plain-English glossary of 30 AI terms every parent should know.
+
 ## Business training
 
 - In-person AI training for company sales and marketing teams, and group licences for schools and learning centres. Enquire by email or book a call at https://calendly.com/contact-skillsuniversity/30min
